@@ -37,12 +37,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_202445) do
   end
 
   create_table "team_members", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "team_id", null: false
+    t.integer "user_id"
+    t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_team_members_on_team_id"
-    t.index ["user_id"], name: "index_team_members_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -70,7 +68,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_202445) do
   add_foreign_key "subtasks", "tasks"
   add_foreign_key "tasks", "users", column: "manager_id"
   add_foreign_key "tasks", "users", column: "member_id"
-  add_foreign_key "team_members", "teams"
-  add_foreign_key "team_members", "users"
   add_foreign_key "teams", "users"
 end
