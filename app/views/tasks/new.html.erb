@@ -12,7 +12,8 @@
         <%= f.input :name %>
         <%= f.input :description %>
         <%= f.input :deadline %>
-        <%= f.input :member, collection: User.all %>
+        <%= f.input :member_id, collection: User.all, value_method: :first_name %>
+        <%#  USER.ALL => TEAM_MEMBERS.ALL %>
         <%= f.button :submit %>
         <% end %>
 

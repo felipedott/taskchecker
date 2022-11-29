@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     # @meetings = Meeting.all(scope->id)
   end
 
-  private
+  # private
 
   # def a_definir
   # end

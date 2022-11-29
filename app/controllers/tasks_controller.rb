@@ -1,7 +1,15 @@
 class TasksController < ApplicationController
 
+
   def index
+    # RESOLVER ESTA MERDA EM ALGUM MOMENTO
+
+    # IF USER = MANAGER
     @tasks = policy_scope(Task)
+    authorize @tasks
+    # ELSE
+    # @tasks = policy_scope(Task).where(user: current_user)
+    # binding.pry
   end
 
   def new
@@ -12,11 +20,12 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     # @task.user = current_user
-    @task.manager_id = current_user
+    @task.manager = current_user
+    # binding.pry
     authorize @task
-    raise
+
     if @task.save
-      redirect_to tasks_path(@task)
+      redirect_to task_path(@task)
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,6 +39,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :deadline)
+    params.require(:task).permit(:name, :description, :deadline, :member_id)
   end
 end
