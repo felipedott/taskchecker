@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :tasks_as_member, class_name: 'Task', foreign_key: :member_id
 
   has_many :teams, through: :team_members
-  has_many :team_members
+  has_many :team_members # JOIN TABLE
 end
