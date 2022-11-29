@@ -1,0 +1,21 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/sidebar' %>
+<div class="main">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-sm-6 ">
+
+
+
+         <p>Name: <%= @task.name %></p>
+         <p>Description: <%= @task.description %></p>
+         <p>Deadline: <%= @task.deadline %></p>
+         <p>Manager: <%= @task.manager.first_name %></p>
+         <p>Responsavel: <%= @task.member.first_name %></p>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
