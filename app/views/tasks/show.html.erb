@@ -1,3 +1,4 @@
+<%= render 'shared/navbar' %>
 <%= render 'shared/sidebar' %>
 <div class="main">
   <div class="container mt-5">
@@ -6,9 +7,11 @@
 
 
 
-         <p><%= @task.name %></p>
-         <p><%= @task.description %></p>
-         <p><%= @task.deadline %></p>
+         <p>Name: <%= @task.name %></p>
+         <p>Description: <%= @task.description %></p>
+         <p>Deadline: <%= @task.deadline %></p>
+         <p>Manager: <%= @task.manager.first_name %></p>
+         <p>Responsavel: <%= @task.member.first_name %></p>
 
 
 
