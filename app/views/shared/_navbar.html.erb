@@ -1,7 +1,31 @@
-
+<% if user_signed_in? %>
   <div class="navbar navbar-expand-sm bg-transparent navbar-lewagon">
     <div class="container justify-content-beetwen">
-      <%= link_to "#", class: "navbar-brand" do %>
+    <div class="">
+      <%= Time.now.strftime("%B %d, %Y") %>
+      <p>Welcome back, <%= current_user.first_name.capitalize %>!</p>
+    </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item px-3">
+            <form class="form-inline ">
+              <input class="form-control rounded-4" type="search" placeholder="Search" aria-label="Search">
+            </form>
+          </li>
+          <li class="nav-item dropdown">
+            <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png", class: "avatar-square dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="navbar navbar-expand-sm bg-transparent navbar-lewagon">
+    <div class="container justify-content-beetwen">
+      <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
       <% end %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -10,9 +34,10 @@
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
           <li>
-            <%= link_to "Sign up", new_user_session_path, class: "nav-link btn btn-primary rounded-5" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link btn btn-primary rounded-5" %>
           </li>
         </ul>
       </div>
     </div>
   </div>
+<% end %>
