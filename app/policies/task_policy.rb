@@ -6,6 +6,10 @@ class TaskPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
+
   def show?
     true
   end
