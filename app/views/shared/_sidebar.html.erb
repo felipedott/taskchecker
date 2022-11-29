@@ -1,8 +1,20 @@
 <div class="sidenav">
-<%= link_to 'Home', dashboard_path %>
-<%= link_to 'Team' %>
-<%= link_to 'Tasks' %>
-<%= link_to 'Meetings' %>
-<%= link_to 'Calendar' %>
-<%= link_to 'Chat' %>
+  <%= link_to dashboard_path do %>
+    <i class="fa-solid fa-house-chimney"></i> Home
+  <% end %>
+  <%= link_to dashboard_path do %>
+    <i class="fa-solid fa-users-line"></i> Team
+  <% end %>
+  <%= link_to tasks_path do %>
+    <i class="fa-solid fa-list-check"></i> Tasks
+  <% end %>
+  <%= link_to dashboard_path do %>
+    <i class="fa-solid fa-video"></i> Meetings
+  <% end %>
+  <%= link_to dashboard_path do %>
+    <i class="fa-solid fa-calendar"></i> Calendar
+  <% end %>
+  <%= link_to dashboard_path do %>
+    <i class="fa-solid fa-message"></i> Chat
+  <% end %>
 </div>
