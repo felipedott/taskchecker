@@ -23,7 +23,6 @@ class TasksController < ApplicationController
     @task.manager = current_user
     # binding.pry
     authorize @task
-
     if @task.save
       redirect_to task_path(@task)
     else
