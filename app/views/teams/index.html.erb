@@ -1,8 +1,11 @@
+<%= render 'shared/navbar' %>
 <%= render 'shared/sidebar' %>
+
 <div class="main">
   <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col-12 col-md-8 col-sm-6 ">
+
         <h1>My teams</h1>
           <%= link_to 'New Team', new_team_path, class: 'btn btn-outline-danger' %>
           <% @teams.each do |team| %>
