@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
 
-
   def index
     # RESOLVER ESTA MERDA EM ALGUM MOMENTO
 
