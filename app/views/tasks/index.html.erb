@@ -8,9 +8,22 @@
 
          <h1>All Tasks</h1>
 
-      <%# <% if current_user.manager?  %>
-        <%# <p>Visible only for superadmins and supervisors! </p> %>
-      <%# <% end %> %> %>
+
+          <div class="cards">
+              <% @tasks.each do |task| %>
+                <div class="card-tasks">
+                  <div class="card-tasks-infos">
+                    <h2><%= task.name %></h2>
+                    <p> <small> < %= task.team %> </small> </p>
+                    <p><%= task.description %></p>
+                    <p><%= task.deadline %></p>
+                    <p> AQUI ENTRA A PROGRESS BAR -> ( < %= @tasks.completed %> / <%= @tasks.size %> ) </p>
+                  </div>
+                </div>
+              <% end %>
+
+            </div>
+
 
          <%= link_to 'New task', new_task_path %>
 
