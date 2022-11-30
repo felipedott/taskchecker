@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_213220) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_30_152256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,10 +37,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_213220) do
   end
 
   create_table "team_members", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "team_id"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["team_id"], name: "index_team_members_on_team_id"
+    t.index ["user_id"], name: "index_team_members_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -60,13 +63,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_213220) do
     t.string "first_name"
     t.string "last_name"
     t.string "nickname"
-    t.boolean "manager", default: false
-    t.boolean "member", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "subtasks", "tasks"
-  add_foreign_key "tasks", "users", column: "manager_id"
-  add_foreign_key "tasks", "users", column: "member_id"
+  add_foreign_key "tasks", "team_members", column: "manager_id"
+  add_foreign_key "tasks", "team_members", column: "member_id"
+  add_foreign_key "team_members", "teams"
+  add_foreign_key "team_members", "users"
 end

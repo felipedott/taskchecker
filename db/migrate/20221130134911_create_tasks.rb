@@ -4,8 +4,8 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :description
       t.date :deadline
-      t.references :manager, foreign_key: { to_table: :users }
-      t.references :member, foreign_key: { to_table: :users }
+      t.references :manager, foreign_key: { to_table: :team_members }
+      t.references :member, foreign_key: { to_table: :team_members }
       t.timestamps
     end
   end
