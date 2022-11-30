@@ -7,11 +7,19 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
     # @team.user = current_user
+    # @team.team_member = current_user
+    # @team_member = TeamMember.new
+    # @team_member.user = current_user
+    # @team_member.admin = true
+    # @team.team_member_id = @team_member
+    @team = Team.new(team_params)
+
     authorize @team
     if @team.save
-      redirect_to team_path(@team), notice: "New team created!"
+      redirect_to join_path(@team)
+      # redirect_to team_path(@team), notice: "New team created!"
+      raise
     else
       render :new, status: :unprocessable_entity
     end
@@ -50,6 +58,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :id)
+    params.require(:team).permit(:name)
   end
 end
