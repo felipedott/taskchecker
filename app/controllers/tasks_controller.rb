@@ -4,6 +4,10 @@ class TasksController < ApplicationController
     # RESOLVER ESTA MERDA EM ALGUM MOMENTO
 
     # IF USER = MANAGER
+    # @user = current_user
+    # @team = Team.find(@user)
+    # @team_member = TeamMember.where(team_id: @team, user_id: @user)
+
     @tasks = policy_scope(Task)
     authorize @tasks
     # ELSE
