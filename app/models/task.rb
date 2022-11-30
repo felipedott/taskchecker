@@ -3,8 +3,8 @@ class Task < ApplicationRecord
 
   # belongs_to :team -> as linhas abaixo ja deixam isso implicito
 
-  belongs_to :manager, class_name: 'TeamMember'
-  belongs_to :member, class_name: 'TeamMember'
+  belongs_to :manager, class_name: 'User'
+  belongs_to :member, class_name: 'User'
 
   validates :name, presence: true
   validates :description, presence: true
