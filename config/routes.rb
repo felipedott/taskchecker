@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :teams do
     resources :tasks, only: [:new, :create]
+    resources :team_members, only: [:new, :create]
 
     # collection do
     #   get :my_tasks
@@ -13,5 +14,5 @@ Rails.application.routes.draw do
   end
   resources :tasks
 
-  post "join", to: "team_members#join"
+  # post "join", to: "team_members#join"
 end
