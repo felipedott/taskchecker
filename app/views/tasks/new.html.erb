@@ -5,14 +5,30 @@
     <div class="row ">
       <div class="col-12 col-md-8 col-sm-6 form-new">
       <h2>New Task</h2>
+
       <%# MUITO PROVAVELMENTE TERA QUE EDITAR APOS TERMIANR A CONCLUSAO DE TEAM %>
-      <%= simple_form_for @task do |f| %>
+      <%= simple_form_for [@team, @task] do |f| %>
       <%= f.error_notification %>
         <%= f.input :name %>
         <%= f.input :description %>
         <%= f.input :deadline %>
-        <%= f.input :member_id, collection: User.all, value_method: :first_name %>
+
+          <%# REFATORAR ISSO PELO AMOR DE JESUS %>
+          <%# team_members = TeamMember.where(team_id: @team.id) %>
+
+          <%# array = [] %>
+          <%# team_members.each do |team_member| %>
+          <%# array << team_member.user.first_name unless team_member.admin? %>
+          <%# end %>
+
+
+        <%# raise %>
+        <%= f.input :member_id, collection: @team_members, label_method: :user_name %>
+        <%#= f.input :member, colection: TeamMember.all, :required => true, value_method: :first_name, as: :radio_buttons %>
+        <%#= f.input :member, collection: @team_members.map(&:user_id).map { |x| User.find(x).first_name}, value_method: :user_id %>
+        <%#= f.association :member, label_method: :first_name, value_method: :id, as: :radio_buttons%>
         <%#  USER.ALL => TEAM_MEMBERS.ALL %>
+        <%#= f.input :team_id, collection: Team.all %>
         <%= f.button :submit , class: 'btn btn-outline' %>
         <% end %>
 

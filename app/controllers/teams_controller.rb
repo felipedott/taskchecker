@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
   def destroy
     authorize @team
     @team.destroy
-    redirect_to team_path, status: :see_other
+    redirect_to teams_path, status: :see_other
   end
 
   def show
