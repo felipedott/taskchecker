@@ -10,11 +10,11 @@
             <%= f.button :submit, class: 'btn btn-outline-secondary' %>
           <% end %>
           <hr>
-          <%= button_to "add a member to team", @team, class: 'btn btn-outline-danger' %>
+          <%= button_to "add a member to team", @team, class: 'button-dark-purple' %>
 
           <hr>
 
-          <%= button_to "Delete this team", @team, class: 'btn btn-outline-danger', method: :delete if policy(@team).destroy? %>
+          <%= button_to "Delete this team", @team, class: 'button-dark-purple', method: :delete if policy(@team).destroy? %>
       </div>
     </div>
   </div>
