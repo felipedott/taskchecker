@@ -11,15 +11,18 @@ class TeamMembersController < ApplicationController
   # end
 
   def new
+    @users = User.all
     @team_member = TeamMember.new
     authorize @team_member
   end
 
   def create
     @team_member = TeamMember.new(member_params)
-    @team_member.team_id = @team.id
-    authorize @team_member
+    @user = User.find_by_email(params[:team_member][:user_id])
 
+    @team_member.team_id = @team.id
+    @team_member.user_id = @user.id
+    authorize @team_member
     if @team_member.save
       redirect_to team_path(@team)
     else

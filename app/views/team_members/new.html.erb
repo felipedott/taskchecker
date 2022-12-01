@@ -6,15 +6,11 @@
       <div class="col-12 col-md-8 col-sm-6 form-new">
       <h2>New Member</h2>
 
-
       <%= simple_form_for [@team, @team_member] do |f| %>
         <%= f.error_notification %>
-        <%= f.input :user_id %>
-
+        <%= f.input :user_id, as: :string %>
         <%= f.button :submit , class: 'btn btn-outline' %>
         <% end %>
-
-
       </div>
     </div>
   </div>
