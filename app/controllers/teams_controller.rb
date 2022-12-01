@@ -20,6 +20,7 @@ class TeamsController < ApplicationController
   end
 
   def index
+    @user = current_user
     @teams = policy_scope(Team)
     authorize @teams
   end
