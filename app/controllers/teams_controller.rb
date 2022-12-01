@@ -19,6 +19,11 @@ class TeamsController < ApplicationController
     end
   end
 
+  # def show
+  #   @tasks = policy_scope(Task)
+  #   authorize @tasks
+  # end
+
   def index
     @user = current_user
     @teams = policy_scope(Team)

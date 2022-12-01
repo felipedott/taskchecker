@@ -19,7 +19,6 @@ class TeamMembersController < ApplicationController
   def create
     @team_member = TeamMember.new(member_params)
     @user = User.find_by_email(params[:team_member][:user_id])
-
     @team_member.team_id = @team.id
     @team_member.user_id = @user.id
     authorize @team_member
@@ -40,7 +39,3 @@ class TeamMembersController < ApplicationController
     @team = Team.find(params[:team_id])
   end
 end
-
-
-# TIME - > USUARIO
-##
