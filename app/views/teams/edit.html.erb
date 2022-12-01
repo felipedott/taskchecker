@@ -11,6 +11,7 @@
           <% end %>
           <hr>
           <%= button_to "add a member to team", @team, class: 'btn btn-outline-danger' %>
+
           <hr>
 
           <%= button_to "Delete this team", @team, class: 'btn btn-outline-danger', method: :delete if policy(@team).destroy? %>
