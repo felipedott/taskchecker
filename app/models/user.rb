@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   # has_and_belongs_to_many :tasks
 
+
   has_many :teams, through: :team_members
   has_many :team_members # JOIN TABLE
 end

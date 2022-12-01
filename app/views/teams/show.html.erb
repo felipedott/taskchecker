@@ -1,16 +1,19 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/sidebar' %>
+
 <div class="main">
   <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col-12 col-md-8 col-sm-6 ">
-
+        <div class="card-team">
          <h2><%= @team.name %></h2>
          Members:
          <ol>
           <% @team.users.each do |member| %>
-            <li><%= member.first_name %> </li>
-          <% end %>
+
+                <li><%= member.first_name %> </li>
+
+            <% end %>
           </ol>
 
           <%= link_to "Edit this team", edit_team_path(@team), class: 'btn btn-primary' %>
@@ -18,7 +21,7 @@
          <%= link_to 'New task', new_team_task_path(@team) %>
 
          <%= link_to 'Add member', new_team_team_member_path(@team) %>
-
+        </div>
       </div>
     </div>
   </div>

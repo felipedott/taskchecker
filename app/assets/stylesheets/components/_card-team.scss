@@ -1,0 +1,60 @@
+.card-team {
+  overflow: hidden;
+  height: 150px;
+  background: $purple;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  border-radius: 15px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-around;
+  color: white;
+
+}
+
+.card-team a {
+  text-decoration: none;
+  color: white;
+}
+
+.card-team img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-team h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+  padding-top: 5px;
+}
+
+.card-team p {
+  color: white;
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-team .card-team-infos {
+  padding: 16px;
+  display: inline-flex;
+  list-style: none;
+}
+
+
+.tile-me {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.tile-me > li {
+  margin: 10px;
+  list-style: none;
+}
