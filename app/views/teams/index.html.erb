@@ -14,21 +14,23 @@
           <div class="cards">
 
             <% @teams.each do |team| %>
-              <div class="card-teams">
-                <%= link_to team , class: 'hover' do %>
-                <div>
-                  <h3><%= team.name %></h3>
-                  <div class="card-teams-info">
-                    <ul class="tile-me">
-                      <% team.users.each do |user| %>
-                        <%# <li>< %= user.first_name % ></li> %>
-                        <li> <img class="avatar tile" alt="avatar" style="width: 40px" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" /> </li>
-                      <% end %>
-                    </ul>
+              <% if team.user_ids.include?(@user.id) %>
+                <div class="card-teams">
+                  <%= link_to team , class: 'hover' do %>
+                  <div>
+                    <h3><%= team.name %></h3>
+                    <div class="card-teams-info">
+                      <ul class="tile-me">
+                        <% team.users.each do |user| %>
+                          <%# <li>< %= user.first_name % ></li> %>
+                          <li> <img class="avatar tile" alt="avatar" style="width: 40px" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" /> </li>
+                        <% end %>
+                      </ul>
+                    </div>
                   </div>
+                  <% end %>
                 </div>
-                <% end %>
-              </div>
+              <% end %>
             <% end %>
           </div>
      </div>

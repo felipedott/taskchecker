@@ -9,7 +9,6 @@ class TeamMembersController < ApplicationController
 
   def create
     @team_member = TeamMember.new(member_params)
-
     authorize @team_member
     if find_user
       @team_member.team_id = @team.id
