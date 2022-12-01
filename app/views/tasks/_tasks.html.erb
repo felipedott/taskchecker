@@ -1,0 +1,14 @@
+<% tasks.each do |task| %>
+              <% if task.member_id == current_user.id || task.manager_id == current_user.id %>
+                <div class="card-tasks">
+                  <div class="card-tasks-infos">
+                    <h2><%= task.name %></h2>
+                    <p> <small> <%= task.team.name %> </small> </p>
+                    <p><%= task.description %></p>
+                    <p><%= task.deadline %></p>
+                    <p> AQUI ENTRA A PROGRESS BAR -> ( < %= @tasks.completed %> / <%= @tasks.size %> ) </p>
+                  </div>
+                </div>
+              <% end %>
+
+              <% end %>

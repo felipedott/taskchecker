@@ -7,7 +7,10 @@ class PagesController < ApplicationController
 
   def dashboard
     # definir as instancias por base no current_user p/ puxar so o necessario
-    @tasks = Task.all
+    @user = current_user
+    @tasks = policy_scope(Task)
+    @team_members = policy_scope(TeamMember)
+    @teams = policy_scope(Team)
     # @meetings = Meeting.all(scope->id)
   end
 
