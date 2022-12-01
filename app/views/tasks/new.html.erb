@@ -23,7 +23,7 @@
 
 
         <%# raise %>
-        <%= f.input :member_id, collection: @team_members %>
+        <%= f.input :member_id, collection: @team_members, label_method: :user_name %>
         <%#= f.input :member, colection: TeamMember.all, :required => true, value_method: :first_name, as: :radio_buttons %>
         <%#= f.input :member, collection: @team_members.map(&:user_id).map { |x| User.find(x).first_name}, value_method: :user_id %>
         <%#= f.association :member, label_method: :first_name, value_method: :id, as: :radio_buttons%>
