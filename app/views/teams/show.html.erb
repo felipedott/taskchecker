@@ -18,11 +18,11 @@
 
 
 <%# raise %>
-          <%= link_to "Edit this team", edit_team_path(@team), class: 'btn btn-primary' %>
+          <%= link_to "Edit this team", edit_team_path(@team), class: 'button-dark-purple' %>
 
-         <%= link_to 'New task', new_team_task_path(@team) %>
+         <%= link_to 'New task', new_team_task_path(@team), class: 'button-dark-purple' %>
 
-         <%= link_to 'Add member', new_team_team_member_path(@team) %>
+         <%= link_to 'Add member', new_team_team_member_path(@team), class: 'button-dark-purple' %>
         </div>
         <hr>
         <h2>Tasks</h2>
