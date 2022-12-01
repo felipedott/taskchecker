@@ -8,6 +8,7 @@
         <%= f.input :first_name %>
         <%= f.input :last_name %>
         <%= f.input :nickname %>
+        <%= f.input :avatar, as: :file %>
         <%= f.button :submit, "Update", class: 'btn btn-outline' %>
         <% end %>
         <%= link_to "Back to Profile", dashboard_path %>
