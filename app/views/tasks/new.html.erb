@@ -12,23 +12,7 @@
         <%= f.input :name %>
         <%= f.input :description %>
         <%= f.input :deadline %>
-
-          <%# REFATORAR ISSO PELO AMOR DE JESUS %>
-          <%# team_members = TeamMember.where(team_id: @team.id) %>
-
-          <%# array = [] %>
-          <%# team_members.each do |team_member| %>
-          <%# array << team_member.user.first_name unless team_member.admin? %>
-          <%# end %>
-
-
-        <%# raise %>
-        <%= f.input :member_id, collection: @team_members, label_method: :user_name %>
-        <%#= f.input :member, colection: TeamMember.all, :required => true, value_method: :first_name, as: :radio_buttons %>
-        <%#= f.input :member, collection: @team_members.map(&:user_id).map { |x| User.find(x).first_name}, value_method: :user_id %>
-        <%#= f.association :member, label_method: :first_name, value_method: :id, as: :radio_buttons%>
-        <%#  USER.ALL => TEAM_MEMBERS.ALL %>
-        <%#= f.input :team_id, collection: Team.all %>
+        <%= f.input :member_id, collection: @team_members, label_method: :user_name, value_method: :user_id %>
         <%= f.button :submit , class: 'btn btn-outline' %>
         <% end %>
 
