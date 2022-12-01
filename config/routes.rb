@@ -13,6 +13,6 @@ Rails.application.routes.draw do
 
   end
   resources :tasks
-
+  resources :users, only: [:edit, :update]
   # post "join", to: "team_members#join"
 end
