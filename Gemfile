@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 # Necessary Gems
+gem "cancancan"
 gem "pundit"
 gem "cloudinary"
 gem 'pry-byebug'
