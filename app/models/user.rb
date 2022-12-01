@@ -12,4 +12,30 @@ class User < ApplicationRecord
   has_many :teams, through: :team_members
   has_many :team_members # JOIN TABLE
 
+  # def user_name
+  #   "#{first_name} #{last_name}"
+  # end
+
+  has_one_attached :avatar
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  after_commit :add_default_avatar, on: [:create, :update]
+
+  private
+
+  def add_default_avatar
+    unless avatar.attached?
+      avatar.attach(
+        io: File.open(
+          Rails.root.join(
+            'app', 'assets', 'images', 'default_avatar.jpg'
+          )
+        ),
+        filename: 'default_avatar.jpg',
+        content_type: 'image/jpg'
+      )
+    end
+  end
 end

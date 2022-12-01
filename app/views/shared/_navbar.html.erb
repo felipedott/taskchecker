@@ -13,12 +13,12 @@
             </form>
           </li>
           <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%=  image_tag "#{cl_image_path current_user.avatar.key}", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end rounded-5 py-4" style="width: 17rem;" aria-labelledby="navbarDropdown">
               <%# <div class="card" style="width: 17rem;"> %>
                 <%# <img src="..." class="card-img-top" alt="..."> %>
                 <div class="card-img d-flex justify-content-center pb-2">
-                  <img class="avatar-large" alt="avatar-large" style="width:7rem;" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+                  <img class="avatar-square" alt="avatar-large" style="width:7rem;" src="<%= cl_image_path current_user.avatar.key %>" />
                 </div>
                 <div class="d-flex justify-content-center mb-4">
                   <h5 class="card-title"><strong>
@@ -33,7 +33,7 @@
                   <%= link_to dashboard_path, class: "dropdown-item" do %>
                     <i class="fa-solid fa-message"></i> Messages
                   <% end %>
-                  <%= link_to dashboard_path, class: "dropdown-item" do %>
+                  <%= link_to edit_user_path(current_user), class: "dropdown-item" do %>
                     <i class="fa-solid fa-gear"></i> Settings
                   <% end %>
 
