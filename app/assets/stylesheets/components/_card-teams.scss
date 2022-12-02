@@ -9,10 +9,13 @@
   border-radius: 15px;
   flex-wrap: wrap;
   flex-direction: column;
-  align-content: space-around;
+  align-content: center;
   color: white;
 
 }
+// * {
+//   border: solid 1px red;
+// }
 
 .card-teams a {
   text-decoration: none;
@@ -20,8 +23,8 @@
 }
 
 .card-teams img {
-  height: 100%;
-  width: 120px;
+  // height: 100%;
+  width: 80px;
   object-fit: cover;
 }
 
@@ -49,12 +52,12 @@
 }
 
 
-.tile-me {
-  display: flex;
-  flex-flow: row wrap;
-}
+// .tile-me {
+//   display: flex;
+//   flex-flow: row wrap;
+// }
 
-.tile-me > li {
-  margin: 10px;
-  list-style: none;
-}
+// .tile-me > li {
+//   margin: 10px;
+//   list-style: none;
+// }
