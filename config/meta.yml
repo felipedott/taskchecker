@@ -1,0 +1,5 @@
+meta_name: "TaskChecker"
+meta_title: "TaskChecker - Checking Tasks with an ease"
+meta_description: "TaskChecker is the best solution ever made, you guys should try it."
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@pocotoh_"   # required for Twitter Cards

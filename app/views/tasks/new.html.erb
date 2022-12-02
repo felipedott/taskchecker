@@ -11,7 +11,10 @@
       <%= f.error_notification %>
         <%= f.input :name %>
         <%= f.input :description %>
-        <%= f.input :deadline %>
+        <%= f.input :deadline , as: :string,
+                                wrapper_html: { class: "mb-4" },
+                                label_html: { class: "form-label text-secondary fw-bold" },
+                                input_html: { data: { controller: "flatpickr" } } %>
         <%= f.input :member_id, collection: @team_members, label_method: :user_name, value_method: :user_id %>
         <%= f.button :submit , class: 'btn btn-outline' %>
         <% end %>
