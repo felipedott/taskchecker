@@ -10,6 +10,7 @@ class Task < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :member_id, presence: true
+  validates :completed, presence: true
 
   # has_and_belongs_to_many :users
 end
