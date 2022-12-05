@@ -2,7 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         # for Google OmniAuth
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :tasks_as_manager, class_name: 'Task', foreign_key: :manager_id
   has_many :tasks_as_member, class_name: 'Task', foreign_key: :member_id
@@ -22,6 +24,12 @@ class User < ApplicationRecord
   validates :last_name, presence: true
 
   after_commit :add_default_avatar, on: [:create, :update]
+
+  def self.from_google(email:, full_name:, uid:, avatar_url:)
+    create_with(uid: uid, full_name: full_name, avatar_url: avatar_url).find_or_create_by!(email: email)
+  end
+
+
 
   private
 
