@@ -14,10 +14,6 @@ class User < ApplicationRecord
   has_many :teams, through: :team_members
   has_many :team_members # JOIN TABLE
 
-  # def user_name
-  #   "#{first_name} #{last_name}"
-  # end
-
   has_one_attached :avatar
 
   validates :first_name, presence: true
@@ -25,11 +21,38 @@ class User < ApplicationRecord
 
   after_commit :add_default_avatar, on: [:create, :update]
 
-  def self.from_google(email:, full_name:, uid:, avatar_url:)
-    create_with(uid: uid, full_name: full_name, avatar_url: avatar_url).find_or_create_by!(email: email)
+  def self.from_omniauth(auth)
+    # where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    #   user.email = auth.info.email
+    #   user.password = Devise.friendly_token[0, 20]
+    #   user.first_name = auth.info.first_name # assuming the user model has a name
+    #   user.last_name = auth.info.last_name
+    # end
+    # binding.pry
+    user_params = auth.slice("provider", "uid")
+    user_params.merge! auth.info.slice("email", "first_name", "last_name")
+
+    # Finish creating the user params
+
+    # Find the user if there was a log in
+    user = User.find_by(provider: auth.provider, uid: auth.uid)
+
+    # If the User did a regular sign up in the past, find it
+    user ||= User.find_by(email: auth.info.email)
+
+    # If we had a user, update it
+    if user
+      user.update(provider: auth.provider, uid: auth.uid)
+    # Else, create a new user with the params that come from the app callback
+    else
+      user = User.new(email: auth.info.email, first_name: auth.info.first_name, last_name: auth.info.last_name, provider: auth.provider, uid: auth.uid)
+      # create a fake password for validation
+      user.password = Devise.friendly_token[0,20]
+      user.save
+    end
+
+    return user
   end
-
-
 
   private
 

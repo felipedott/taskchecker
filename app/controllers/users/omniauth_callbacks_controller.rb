@@ -12,15 +12,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # https://github.com/heartcombo/devise#omniauth
 
   def google_oauth2
-    user = User.from_google(from_google_params)
-
+    user = User.from_omniauth(auth)
     if user.present?
       sign_out_all_scopes
       flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
-      sign_in_and_redirect admin, event: :authentication
+      sign_in_and_redirect user, event: :authentication
     else
-      flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
-      redirect_to new_admin_session_path
+      flash[:alert] =
+        t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+      redirect_to new_user_session_path
     end
   end
 
@@ -35,15 +35,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   private
-
-  def from_google_params
-    @from_google_params ||= {
-      uid: auth.uid,
-      email: auth.info.email,
-      full_name: auth.info.name,
-      avatar_url: auth.info.image
-    }
-  end
 
   def auth
     @auth ||= request.env['omniauth.auth']
