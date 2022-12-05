@@ -1,3 +1,5 @@
+
+
 <% if user_signed_in? %>
   <div class="navbar navbar-expand-sm bg-transparent navbar-lewagon">
     <div class="container justify-content-beetwen">
@@ -35,6 +37,9 @@
                   <% end %>
                   <%= link_to edit_user_path(current_user), class: "dropdown-item" do %>
                     <i class="fa-solid fa-gear"></i> Settings
+                  <% end %>
+                   <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                    <i class="fa-solid fa-gear"></i> Edit User
                   <% end %>
 
                   <%= link_to destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} do %>
