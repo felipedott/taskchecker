@@ -62,11 +62,11 @@ module GoogleCalendarApi
       description: event.description,
       start: {
         date_time: event.start_date.to_datetime.to_s,
-        time_zone: 'America/New_York',
+        time_zone: 'America/Sao_Paulo',
       },
       end: {
         date_time: event.end_date.to_datetime.to_s,
-        time_zone: 'America/New_York',
+        time_zone: 'America/Sao_Paulo',
       },
       organizer: {
         email: event.user.email,

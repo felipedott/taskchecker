@@ -65,7 +65,7 @@ class EventsController < ApplicationController
       @events << {
         title: event.title,
         start: event.start_date.strftime("%Y-%m-%d"),
-        start: event.end_date.strftime("%Y-%m-%d"),
+        end: event.end_date.strftime("%Y-%m-%d"),
         url: event_path(event)
       }
     end
@@ -105,11 +105,11 @@ class EventsController < ApplicationController
 
   private
 
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def event_params
-      params.require(:event).permit!
-    end
+  def event_params
+    params.require(:event).permit!
+  end
 end

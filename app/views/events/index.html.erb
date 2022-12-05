@@ -26,22 +26,7 @@
 
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <%= link_to dashboard_path, class: "dropdown-item" do %>
-                    <i class="fa-solid fa-bell"></i> Notifications
-                  <% end %>
-                  <%= link_to dashboard_path, class: "dropdown-item" do %>
-                    <i class="fa-solid fa-message"></i> Messages
-                  <% end %>
-                  <%= link_to edit_user_path(current_user), class: "dropdown-item" do %>
-                    <i class="fa-solid fa-gear"></i> Settings
-                  <% end %>
-                   <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
-                    <i class="fa-solid fa-gear"></i> Edit User
-                  <% end %>
 
-                  <%= link_to destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} do %>
-                    <i class="fa-solid fa-right-from-bracket"></i> Log out
-                  <% end %>
 
                   <%= link_to 'Show', event, class: 'dropdown-item' %>
                   <%= link_to 'Edit', edit_event_path(event), class: 'dropdown-item' %>
