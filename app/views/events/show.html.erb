@@ -1,0 +1,54 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/sidebar' %>
+
+<div class="main">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12 col-md-8 col-sm-6 ">
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-7">
+      <h3>Details:</h3>
+      <div class="card mb-4">
+        <div class="card-body">
+          <p>
+            <strong>Title:</strong>
+            <%= @event.title %>
+          </p>
+          <hr>
+          <p>
+            <strong>Start date:</strong>
+            <%= @event.start_date %>
+          </p>
+          <hr>
+          <p>
+            <strong>End date:</strong>
+            <%= @event.end_date %>
+          </p>
+          <p>
+            <strong>Description:</strong>
+            <%= @event.description %>
+          </p>
+          <hr>
+          <%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary' %>
+          <%= link_to 'Back', events_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <h3>Participants:</h3>
+      <ul class="list-group">
+        <% @event.email_guest_list.each do |guest| %>
+          <li class="list-group-item">
+            <div class="media">
+              <%= image_tag 'dummy-user.png', class: 'mr-3 guest-icon' %>
+              <div class="media-body">
+                <h5 class="mt-0"><%= guest %></h5>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

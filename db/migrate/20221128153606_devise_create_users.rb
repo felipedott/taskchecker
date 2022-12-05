@@ -35,9 +35,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       ## Custom columns for Google
       t.string :first_name
       t.string :last_name
-      t.string :nickname
       t.string :uid
       t.string :provider
+      t.string :access_token
+      t.integer :expires_at
+      t.string :refresh_token
 
       t.timestamps null: false
     end

@@ -3,18 +3,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update]
 
   def index
-    # RESOLVER ESTA MERDA EM ALGUM MOMENTO
-
-    # IF USER = MANAGER
-    # @user = current_user
-    # @team = Team.find(@user)
-    # @team_member = TeamMember.where(team_id: @team, user_id: @user)
-
     @tasks = policy_scope(Task)
     authorize @tasks
-    # ELSE
-    # @tasks = policy_scope(Task).where(user: current_user)
-    # binding.pry
   end
 
   def new
@@ -69,5 +59,4 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
-
 end
