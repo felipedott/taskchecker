@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_team, only: [:new, :create]
+  before_action :set_task, only: [:edit, :update]
 
   def index
     # RESOLVER ESTA MERDA EM ALGUM MOMENTO
@@ -34,19 +35,39 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+    authorize @task
+  end
+
+  def update
+    authorize @task
+    @task.update(task_params)
+    redirect_to task_path(@task), notice: "Task was updated!"
+  end
+
   def show
     @task = Task.find(params[:id])
     authorize @task
   end
 
+  def destroy
+    authorize @task
+    @task.destroy
+    redirect_to tasks_path, status: :see_other
+  end
+
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :deadline, :member_id, :team_id)
+    params.require(:task).permit(:name, :description, :completed, :deadline, :member_id, :team_id)
   end
 
   def set_team
     @team = Team.find(params[:team_id])
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 
 end
