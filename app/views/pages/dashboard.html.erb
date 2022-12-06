@@ -15,24 +15,9 @@
         <hr class="my-5">
 
         <h1>Upcoming Meetings</h1>
-          <%= render 'events/events', event: @events %>
+
           <div class="cards">
-              <%# @meetings.each do |meeting| %>
-                <div class="card-tasks">
-                  <div class="card-tasks-infos">
-                    <h2>< %= meeting.name %></h2>
-                    <p> <small> < %= meeting.hour %> </small> </p>
-                    <p>< %= meeting.member -> Show avatar %></p>
-                    <p>< %= link_to -> Join meeting %></p>
-                    <br>
-                    <div>
-                    <%= link_to 'Join', dashboard_path , class: 'btn btn-outline-light' %>
-                    </div>
-
-                  </div>
-                </div>
-              <%# end %>
-
+              <%= render 'events/events', event: @events %>
           </div>
 
 

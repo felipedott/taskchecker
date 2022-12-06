@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <h1>New Event</h1>
+
   <%= form.hidden_field :user_id, value: current_user.id %>
   <%= form.hidden_field :latitude, id: :latitude %>
   <%= form.hidden_field :longitude, id: :longitude %>
@@ -48,4 +50,5 @@
   <div class="actions">
     <%= form.submit class: 'btn btn-block btn-primary mt-4 mb-3' %>
   </div>
+  <%= link_to 'Back', events_path, class: 'btn btn-secondary mb-4' %>
 <% end %>

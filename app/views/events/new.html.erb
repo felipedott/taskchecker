@@ -1,13 +1,13 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8">
-      <h1 class="mt-4 mb-3">New Event</h1>
-      <div class="card mb-4">
-        <div class="card-body">
-          <%= render 'form', event: @event %>
-        </div>
+<%= render 'shared/navbar' %>
+<%= render 'shared/sidebar' %>
+<div class="main">
+  <div class="container mt-5">
+    <div class="row ">
+      <div class="col-12 col-md-8 col-sm-6 form-new">
+
+            <%= render 'form', event: @event %>
+
       </div>
-      <%= link_to 'Back', events_path, class: 'btn btn-secondary mb-4' %>
     </div>
   </div>
 </div>
