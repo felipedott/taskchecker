@@ -29,7 +29,7 @@ class EventPolicy < ApplicationPolicy
     true
   end
 
-  def event_calendar?
+  def calendar?
     true
   end
 
