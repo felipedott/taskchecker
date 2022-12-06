@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :sync_event_with_google]
   before_action :authenticate_user!
+  after_action :verify_authorized, except: :event_calendar
 
   def index
     @events = current_user.events
@@ -59,8 +60,7 @@ class EventsController < ApplicationController
     # end
   end
 
-  def event_calendar
-  end
+  def event_calendar; end
 
   def events_for_calendar
     @events = []
