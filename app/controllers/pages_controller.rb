@@ -11,6 +11,7 @@ class PagesController < ApplicationController
     @tasks = policy_scope(Task)
     @team_members = policy_scope(TeamMember)
     @teams = policy_scope(Team)
+    @events = policy_scope(Event)
     # @meetings = Meeting.all(scope->id)
   end
 

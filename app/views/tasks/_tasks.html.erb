@@ -1,7 +1,7 @@
 
-
               <% tasks.each do |task| %>
               <% if (task.member_id == current_user.id || task.manager_id == current_user.id) && task.completed == false %>
+
                 <div class="card-tasks">
                   <div class="card-tasks-infos">
                     <h2><%= task.name %></h2>
@@ -12,7 +12,7 @@
                     <div class="progress">
                       <div class="progress-bar bg-primary " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p> AQUI ENTRA A PROGRESS BAR -> ( < %= @tasks.completed %> / <%= @tasks.size %> ) </p>
+                    <p> AQUI ENTRA A PROGRESS BAR -> ( < %= completed.size %> / <%= @tasks.size %> ) </p>
                   </div>
                  <%= link_to "details", task, class: 'button-dark-purple' %>
                 </div>
