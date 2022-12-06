@@ -1,0 +1,18 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/sidebar' %>
+<div class="main">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-sm-6 ">
+
+
+
+         <p>Name: <%= @subtask.name %></p>
+         <p>Description: <%= @subtask.description %></p>
+         <p>Deadline: <%= @subtask.deadline %></p>
+
+         <%# <%= link_to "Edit this task", edit_task_path(@task), class: 'button-dark-purple' %> %>
+      </div>
+    </div>
+  </div>
+</div>
