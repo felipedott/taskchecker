@@ -109,9 +109,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_164337) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
-    t.string "nickname"
     t.string "uid"
     t.string "provider"
+    t.string "access_token"
+    t.integer "expires_at"
+    t.string "refresh_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

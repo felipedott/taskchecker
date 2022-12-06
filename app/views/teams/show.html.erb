@@ -30,6 +30,7 @@
       <div class="row">
         <div class="cards">
           <% @team.tasks.each do |task| %>
+          <% if task.completed == false %>
             <div class="card-tasks">
               <div class="col">
                 <div class="card-tasks-infos">
@@ -40,6 +41,7 @@
                 </div>
               </div>
             </div>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mt-4 mb-3">New Event</h1>
+      <div class="card mb-4">
+        <div class="card-body">
+          <%= render 'form', event: @event %>
+        </div>
+      </div>
+      <%= link_to 'Back', events_path, class: 'btn btn-secondary mb-4' %>
+    </div>
+  </div>
+</div>
