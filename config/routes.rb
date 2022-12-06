@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     resources :team_members, only: [:new, :create]
 
   end
-  resources :tasks
+
+  resources :tasks do
+    resources :subtasks
+  end
+
+
   resources :users, only: [:edit, :update]
 
   resources :events do

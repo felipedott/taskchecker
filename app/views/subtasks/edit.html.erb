@@ -1,0 +1,24 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/sidebar' %>
+<div class="main">
+  <div class="container mt-5">
+    <div class="row ">
+      <div class="col-12 col-md-8 col-sm-6 form-new">
+      <h2>Edit SubTask</h2>
+
+
+      <%= simple_form_for [@task, @subtask] do |f| %>
+      <%= f.error_notification %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :deadline , as: :string,
+                                wrapper_html: { class: "mb-4" },
+                                label_html: { class: "form-label text-secondary fw-bold" },
+                                input_html: { data: { controller: "flatpickr" } } %>
+
+        <%= f.button :submit , class: 'btn btn-outline' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
