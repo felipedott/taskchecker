@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :sync_event_with_google]
   before_action :authenticate_user!
+  after_action :verify_authorized, except: :event_calendar
 
   def index
     @events = current_user.events
@@ -50,11 +51,13 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    authorize @event
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to events_path, status: :see_other
+    # respond_to do |format|
+    #   format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   def event_calendar; end
@@ -84,7 +87,6 @@ class EventsController < ApplicationController
   end
 
   def sync_event_with_google
-    @event = Event.find(params[:id])
     authorize @event
     ge = @event.get_google_event(@event.google_event_id, @event.user)
     guests = ge.attendees.map {|at| at.email}.join(", ")

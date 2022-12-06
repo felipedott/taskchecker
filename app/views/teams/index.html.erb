@@ -5,46 +5,36 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-12 col-md-8 col-sm-6 ">
-
-          <div class ='d-flex justify-content-between align-items-center'>
-
-            <h2>My teams</h2>
-            <%= link_to 'New Team', new_team_path, class: 'btn btn-primary' %>
-          </div>
-
-          <hr>
-          <div class="cards">
-
-            <% @teams.each do |team| %>
+        <div class ='d-flex justify-content-between align-items-center'>
+          <h2>My teams</h2>
+          <%= link_to 'New Team', new_team_path, class: 'btn btn-primary' %>
+        </div>
+      <hr>
+        <div class="cards">
+          <% @teams.each do |team| %>
               <% if team.user_ids.include?(@user.id) %>
                 <div class="card-teams">
                   <h3><%= team.name %></h3>
-                  <%= link_to team , class: 'hover' do %>
-                    <div>
-
-                      <div class="card-teams-info">
-
-
-                        <ul class="tile-me">
-                          <% team.users.each do |user| %>
-                            <% if user.avatar.key == nil %>
-                              <li> <img class="avatar-square tile" alt="avatar" src="/app/assets/images/default_avatar.jpg " /> </li>
-                            <% else %>
-                              <li> <img class="avatar-square tile" alt="avatar" src="<%= cl_image_path user.avatar.key%>" /> </li>
+                    <%= link_to team , class: 'hover' do %>
+                      <div>
+                        <div class="card-teams-info">
+                          <ul class="tile-me">
+                            <% team.users.each do |user| %>
+                              <% if user.avatar.key == nil %>
+                                <li> <img class="avatar-square tile" alt="avatar" src="/app/assets/images/default_avatar.jpg " /> </li>
+                              <% else %>
+                                <li> <img class="avatar-square tile" alt="avatar" src="<%= cl_image_path user.avatar.key%>" /> </li>
+                              <% end %>
                             <% end %>
-                          <% end %>
-                        </ul>
-
-                      </div>
-
-                    </div>
-
-                  <% end %>
+                           </ul>
+                        </div>
+                     </div>
+                   <% end %>
                 </div>
               <% end %>
             <% end %>
           </div>
-     </div>
+        </div>
+      </div>
     </div>
-  </div>
 </div>

@@ -33,4 +33,8 @@ class EventPolicy < ApplicationPolicy
     true
   end
 
+  def sync_event_with_google?
+    true
+  end
+
 end
