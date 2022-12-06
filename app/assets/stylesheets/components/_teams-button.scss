@@ -1,12 +1,14 @@
-.button-dark-purple {
-  background-color: $dark-purple;
-  border: 2px;
-  color: white;
-  padding: 8px 15px;
-  text-align: center;
-  text-decoration: none;
+.btn-dark-purple {
   display: inline-block;
-  font-size: 18px;
-  border-radius: 4px;
+  background-color: $dark-purple;
+  width: 250px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 0;
+  display: inline-block;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
 
 }
