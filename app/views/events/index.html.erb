@@ -17,29 +17,23 @@
 
       <% @events.each do |event| %>
         <div class="col-lg-6">
-          <div class="card rounded-0 shadow mb-5">
+          <div class="cards shadow mb-5">
             <div class="card-body">
               <h3><%= event.title %></h3>
               <p><span class="font-weight-bold">Start Time: </span><%= event.start_date %></p>
               <p><span class="font-weight-bold">End Time: </span><%= event.end_date %></p>
 
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Actions
                 </button>
-
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-
-                  <%= link_to 'Show', event, class: 'dropdown-item' %>
-                  <%= link_to 'Edit', edit_event_path(event), class: 'dropdown-item' %>
-                  <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'dropdown-item' %>
-                  <%= link_to 'Sync With Google', sync_event_with_google_event_path(event), class: 'dropdown-item', method: :patch %>
-                  <%= link_to 'Guest List', event, data: { toggle: "modal", target:"#guestModal", remote: true}, class: 'dropdown-item' %>
-                </div>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Show', event, class: 'dropdown-item' %></li>
+                  <li><%= link_to 'Edit', edit_event_path(event), class: 'dropdown-item' %></li>
+                  <li><%= link_to 'Destroy', event, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'dropdown-item'  %></li>
+                  <li><%= link_to 'Sync With Google', sync_event_with_google_event_path(event), data: { turbo_method: :patch }, class: 'dropdown-item' %></li>
+                </ul>
               </div>
-
 
             </div>
           </div>
