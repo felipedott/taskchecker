@@ -7,6 +7,7 @@ ruby "3.1.2"
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
+gem 'google-api-client', require: 'google/apis/calendar_v3'
 gem "cancancan"
 gem "pundit"
 gem "cloudinary"

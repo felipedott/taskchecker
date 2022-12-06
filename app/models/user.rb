@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :teams, through: :team_members
   has_many :team_members # JOIN TABLE
 
+  has_many :events
+
   has_one_attached :avatar
 
   validates :first_name, presence: true
@@ -29,29 +31,68 @@ class User < ApplicationRecord
     #   user.last_name = auth.info.last_name
     # end
     # binding.pry
-    user_params = auth.slice("provider", "uid")
-    user_params.merge! auth.info.slice("email", "first_name", "last_name")
 
-    # Finish creating the user params
+    # DAQUI
 
-    # Find the user if there was a log in
-    user = User.find_by(provider: auth.provider, uid: auth.uid)
+    # user_params = auth.slice("provider", "uid")
+    # user_params.merge! auth.info.slice("email", "first_name", "last_name")
+    # user_params[:access_token] = auth.credentials.token
+    # user_params[:expires_at] = Time.at(auth.credentials.expires_at)
+    # user_params = user_params.to_h
+    # # Finish creating the user params
 
-    # If the User did a regular sign up in the past, find it
-    user ||= User.find_by(email: auth.info.email)
+    # # Find the user if there was a log in
+    # user = User.find_by(provider: auth.provider, uid: auth.uid)
 
-    # If we had a user, update it
+    # # If the User did a regular sign up in the past, find it
+    # user ||= User.find_by(email: auth.info.email)
+    # # If we had a user, update it
+    # if user
+    #   user.update(provider: auth.provider, uid: auth.uid)
+    # # Else, create a new user with the params that come from the app callback
+    # else
+    #   user = User.new(user_params)
+    #   # create a fake password for validation
+    #   user.password = Devise.friendly_token[0,20]
+    #   user.save
+    # end
+
+    #ATE AQUI
+
+    user = User.where(provider: auth.try(:provider) || auth["provider"], uid: auth.try(:uid) || auth["uid"]).first
     if user
-      user.update(provider: auth.provider, uid: auth.uid)
-    # Else, create a new user with the params that come from the app callback
+      return user
     else
-      user = User.new(email: auth.info.email, first_name: auth.info.first_name, last_name: auth.info.last_name, provider: auth.provider, uid: auth.uid)
-      # create a fake password for validation
-      user.password = Devise.friendly_token[0,20]
-      user.save
+      registered_user = User.where(provider: auth.try(:provider) || auth["provider"], uid: auth.try(:uid) || auth["uid"]).first || User.where(email: auth.try(:info).try(:email) || auth["info"]["email"]).first
+      if registered_user
+        unless registered_user.provider == (auth.try(:provider) || auth["provider"]) && registered_user.uid == (auth.try(:uid) || auth["provider"])
+          registered_user.update_attributes(provider: auth.try(:provider) || auth["provider"], uid: auth.try(:uid) || auth["uid"])
+        end
+        return registered_user
+      else
+        user = User.new(:provider => auth.try(:provider) || auth["provider"], uid: auth.try(:uid) || auth["uid"])
+        user.email = auth.try(:info).try(:email) || auth["info"]["email"]
+        user.password = Devise.friendly_token[0,20]
+        user.first_name = auth.info.name.split(" ")[0]
+        user.last_name = auth.info.name.split(" ")[1]
+        user.access_token = auth.credentials.token
+        user.expires_at = auth.credentials.expires_at
+        user.refresh_token = auth.credentials.refresh_token
+        user.save
+        puts user
+      end
+      user
     end
+    # binding.pry
 
-    return user
+  end
+
+  def expired?
+    expires_at < Time.current.to_i
+  end
+
+  def name
+    "#{self.first_name} #{self.last_name}"
   end
 
   private
