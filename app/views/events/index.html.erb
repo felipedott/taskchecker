@@ -15,13 +15,21 @@
 
       <%# <div class="cards"> %>
 
+
       <% @events.each do |event| %>
-        <div class="col-lg-6">
-          <div class="cards shadow mb-5">
-            <div class="card-trips">
-              <h3><%= event.title %></h3>
-              <p><span class="font-weight-bold">Start Time: </span><%= event.start_date %></p>
-              <p><span class="font-weight-bold">End Time: </span><%= event.end_date %></p>
+        <div >
+          <div class="cards shadow mb-3 rounded-4 p-2" style="background-color: #4D4C7C;">
+          <h3><%= event.title %></h3>
+            <div class="card-trips" >
+
+            <p>From:
+                  <%= event.start_date.strftime("%m/%d/%Y at %I:%M%p") %>
+                  to
+                  <%= event.end_date.strftime("%m/%d/%Y at %I:%M%p") %>
+                </p>
+                <hr>
+            <p><%= event.description %></p>
+            <br/>
 
               <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
