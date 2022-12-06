@@ -1,6 +1,5 @@
 class Event < ApplicationRecord
   include GoogleCalendarApi
-  # has_rich_text :description
   CALENDAR_ID = 'primary'
   belongs_to :user
 
