@@ -2,54 +2,51 @@
 <%= render 'shared/sidebar' %>
 
 <div class="main">
-
   <div class="container mt-5">
     <div class="row">
-    <div class="d-flex justify-content-between">
-      <h2><%= @team.name %></h2>
-      <div class="links">
-        <%= link_to "Edit this team", edit_team_path(@team), class: 'btn-dark-purple' %>
-        <%= link_to 'Add member', new_team_team_member_path(@team), class: 'btn-dark-purple' %>
+      <div class="col-12 col-md-8 col-sm-6 ">
+        <div class="card-team">
+          <div class="row">
+            <div class="col">
+              <h1><%= @team.name %></h1>
+            </div>
+          <div class="col">
+            <h2>
+              Members:
+                <ol>
+                  <% @team.users.each do |member| %>
+                    <li><%= member.first_name %> </li>
+                  <% end %>
+                </ol>
+            </h3>
+          </div>
+        <div class="d-grid gap-2 col-4 mx-auto">
+            <%= link_to "Edit this team", edit_team_path(@team), class: 'btn-dark-purple' %>
+            <%= link_to 'New task', new_team_task_path(@team), class: 'btn-dark-purple' %>
+            <%= link_to 'Add member', new_team_team_member_path(@team), class: 'btn-dark-purple' %>
+        </div>
+      <hr>
+    <h3>Tasks:</h3>
+      <div class="row">
+        <div class="cards">
+          <% @team.tasks.each do |task| %>
+          <% if task.completed == false %>
+            <div class="card-tasks">
+              <div class="col">
+                <div class="card-tasks-infos">
+                  <h2><%= task.name %></h2>
+                  <p><%= task.description %></p>
+                  <p><%= task.deadline %></p>
+                  <p>Assigned to: <%= task.member.first_name %></p>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-      <hr>
-    </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-
-      <% @team.users.each do |member| %>
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-header d-flex justify-content-center">
-            <% if member.avatar.key == nil %>
-               <img class="avatar tile" alt="avatar" src="/app/assets/images/default_avatar.jpg " />
-            <% else %>
-               <img class="avatar tile" alt="avatar" src="<%= cl_image_path member.avatar.key%>" />
-            <% end %>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <p class="card-text">Name:</p>
-                <p class="card-text"><%= "#{member.first_name.capitalize} #{member.last_name.capitalize}" %></p>
-              </div>
-
-              <div class="d-flex justify-content-between">
-                <p class="card-text">E-mail:</p>
-                <p class="card-text"><%= member.email %></p>
-              </div>
-
-              <div class="d-flex justify-content-between">
-                <p class="card-text">Tasks:</p>
-                <p class="card-text">3</p>
-              </div>
-            </div>
-            <div class="card-footer d-flex justify-content-center">
-              <%= link_to new_team_task_path(@team) do %>
-                <i class="fa-solid fa-plus"></i> New Task
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
   </div>
+</div>
+</div>
 </div>
