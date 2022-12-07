@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :completed, :deadline, :member_id, :team_id)
+    params.require(:task).permit(:name, :description, :started, :completed, :deadline, :member_id, :team_id)
   end
 
   def set_team

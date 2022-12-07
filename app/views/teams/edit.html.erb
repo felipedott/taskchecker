@@ -8,7 +8,7 @@
          <h1>Editing Team ..</h1>
           <%= simple_form_for @team do |f| %>
             <%= f.input :name, placeholder: 'Novo Projeto X' %>
-            <%= f.input :team_members, placeholder: 'team member Yuhri' %>
+            <%= f.input :team_members, collection: @team_members, label_method: :user_name, value_method: :user_id %>
             <%= f.button :submit, class: 'btn btn-outline-secondary' %>
           <% end %>
           <hr>
