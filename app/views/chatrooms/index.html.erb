@@ -1,0 +1,5 @@
+<h1>Hello World</h1>
+<% @chatroom.each do |chat| %>
+<p><%= chat.name %></p>
+<%= link_to "`$ ${chat.name}`", chatroom_path(chat) %>
+<% end %>
