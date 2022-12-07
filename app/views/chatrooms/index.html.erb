@@ -6,9 +6,8 @@
     <div class="row">
       <div class="col-12 col-md-8 col-sm-6 ">
 
-        <h1>Hello World</h1>
         <% @chatroom.each do |chat| %>
-          <%= link_to chat.name, chatroom_path(chat) %>
+          <%= link_to chat.name, chatroom_path(chat), class: 'btn btn-primary mb-1' %>
         <% end %>
 
       </div>
