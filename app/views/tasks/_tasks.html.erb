@@ -10,10 +10,8 @@
                     <p><%= task.deadline %></p>
                     <p><%= task.completed %></p>
                  <%= link_to "details", task, class: 'btn-dark-purple' %>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="progress">
-                      <div class="progress-bar bg-primary " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+
+                <%= render 'tasks/progress-bar', task: task %>
                   </div>
                 </div>
               <% end %>
