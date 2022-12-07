@@ -25,9 +25,10 @@ Rails.application.routes.draw do
   resources :events do
     patch :sync_event_with_google, on: :member
   end
+
   get 'calendar' => 'events#event_calendar'
 
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: [:show, :index] do
     resources :messages, only: :create
   end
 
