@@ -9,12 +9,12 @@
                     <p><%= task.description %></p>
                     <p><%= task.deadline %></p>
                     <p><%= task.completed %></p>
+                 <%= link_to "details", task, class: 'btn-dark-purple' %>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="progress">
                       <div class="progress-bar bg-primary " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p> AQUI ENTRA A PROGRESS BAR -> ( < %= @tasks.completed.size %> / <%= @tasks.size %> ) </p>
                   </div>
-                 <%= link_to "details", task, class: 'button-dark-purple' %>
                 </div>
               <% end %>
 

@@ -14,10 +14,10 @@
           <% @teams.each do |team| %>
               <% if team.user_ids.include?(@user.id) %>
                 <div class="card-teams">
-                  <h3><%= team.name %></h3>
-                    <%= link_to team , class: 'hover' do %>
-                      <div>
-                        <div class="card-teams-info">
+                  <div>
+                    <div class="card-teams-info">
+                      <h3><%= team.name %></h3>
+                        <%= link_to team , class: 'hover' do %>
                           <ul class="tile-me">
                             <% team.users.each do |user| %>
                               <% if user.avatar.key == nil %>
