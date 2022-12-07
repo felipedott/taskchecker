@@ -24,6 +24,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     authorize @event
+    @event.start_date = @event.set_in_timezone(@event.start_date)
+    @event.end_date = @event.set_in_timezone(@event.end_date)
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -39,6 +41,8 @@ class EventsController < ApplicationController
 
   def update
     authorize @event
+    @event.start_date = @event.set_in_timezone(@event.start_date)
+    @event.end_date = @event.set_in_timezone(@event.end_date)
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }

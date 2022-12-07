@@ -8,15 +8,23 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+
     authorize @team
     if @team.save
       @team_member = TeamMember.new(user: current_user, team: @team)
       @team_member.admin = true
       @team_member.save
+
       redirect_to team_path(@team), notice: "New team created!"
+      @chatroom = Chatroom.new
+      @chatroom.name = "#{@team.name}"
+      @chatroom.team_id = @team.id
+      @chatroom.save
+      # CRIO UM CHATROOM AQUI - > pego o id do team e ai salvo o nome = team.name
     else
       render :new, status: :unprocessable_entity
     end
+
   end
 
   # def show

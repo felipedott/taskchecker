@@ -6,9 +6,9 @@
           </h2>
           <hr>
           <p>From:
-             <%= event.start_date.strftime("%m/%d/%Y at %I:%M%p") %>
+             <%= event.start_date.localtime.strftime("%m/%d/%Y at %I:%M%p") %>
              to
-             <%= event.end_date.strftime("%m/%d/%Y at %I:%M%p") %>
+             <%= event.end_date.localtime.strftime("%m/%d/%Y at %I:%M%p") %>
           </p>
           <hr>
           <p>
