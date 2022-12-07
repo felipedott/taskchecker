@@ -59,6 +59,10 @@ class User < ApplicationRecord
 
   #
 
+  def teams
+    self.team_members.team_id
+  end
+
   def name
     "#{self.first_name} #{self.last_name}"
   end
