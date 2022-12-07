@@ -23,9 +23,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.start_date = @event.start_date.localtime
     authorize @event
-    raise
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
