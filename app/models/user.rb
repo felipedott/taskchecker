@@ -57,12 +57,6 @@ class User < ApplicationRecord
     expires_at < Time.current.to_i
   end
 
-  #
-
-  def teams
-    self.team_members.team_id
-  end
-
   def name
     "#{self.first_name} #{self.last_name}"
   end

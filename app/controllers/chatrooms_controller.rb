@@ -18,5 +18,4 @@ class ChatroomsController < ApplicationController
     @message = Message.new
     authorize @chatroom
   end
-
 end
