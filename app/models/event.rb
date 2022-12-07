@@ -10,6 +10,10 @@ class Event < ApplicationRecord
   after_update :update_event_on_gcal
   before_destroy :remove_event_from_gcal
 
+  def set_in_timezone(time)
+    Time.use_zone(Time.now.zone) { time.to_datetime.change(offset: Time.zone.now.strftime("%z")) }
+  end
+
   def email_guest_list
     return if self.guest_list.nil?
 
