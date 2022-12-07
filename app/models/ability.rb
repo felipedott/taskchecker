@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# NOT USING !!!
+
 class Ability
   include CanCan::Ability
 

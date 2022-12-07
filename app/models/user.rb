@@ -24,40 +24,6 @@ class User < ApplicationRecord
   after_commit :add_default_avatar, on: [:create, :update]
 
   def self.from_omniauth(auth)
-    # where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    #   user.email = auth.info.email
-    #   user.password = Devise.friendly_token[0, 20]
-    #   user.first_name = auth.info.first_name # assuming the user model has a name
-    #   user.last_name = auth.info.last_name
-    # end
-    # binding.pry
-
-    # DAQUI
-
-    # user_params = auth.slice("provider", "uid")
-    # user_params.merge! auth.info.slice("email", "first_name", "last_name")
-    # user_params[:access_token] = auth.credentials.token
-    # user_params[:expires_at] = Time.at(auth.credentials.expires_at)
-    # user_params = user_params.to_h
-    # # Finish creating the user params
-
-    # # Find the user if there was a log in
-    # user = User.find_by(provider: auth.provider, uid: auth.uid)
-
-    # # If the User did a regular sign up in the past, find it
-    # user ||= User.find_by(email: auth.info.email)
-    # # If we had a user, update it
-    # if user
-    #   user.update(provider: auth.provider, uid: auth.uid)
-    # # Else, create a new user with the params that come from the app callback
-    # else
-    #   user = User.new(user_params)
-    #   # create a fake password for validation
-    #   user.password = Devise.friendly_token[0,20]
-    #   user.save
-    # end
-
-    #ATE AQUI
 
     user = User.where(provider: auth.try(:provider) || auth["provider"], uid: auth.try(:uid) || auth["uid"]).first
     if user
@@ -83,9 +49,9 @@ class User < ApplicationRecord
       end
       user
     end
-    # binding.pry
-
   end
+
+  # CHECK IF USER TOKEN IS EXPIRED
 
   def expired?
     expires_at < Time.current.to_i
