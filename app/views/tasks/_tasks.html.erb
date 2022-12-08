@@ -13,7 +13,7 @@
             <p class="card-text"><%= task.description %></p>
           </div>
 
-          <div class="card-footer d-flex justify-content-between">
+          <div class="card-footer justify-content-between">
             <p class="card-text"><%= render 'tasks/progress-bar', task: task %></p>
           <%= link_to task do %>
             <i class="fa-solid fa-angles-right"></i>
@@ -22,6 +22,7 @@
 
         <% end %>
       <% end %>
+
 
   </div>
 </div>
