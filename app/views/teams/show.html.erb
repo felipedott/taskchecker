@@ -4,11 +4,12 @@
 <div class="main">
   <div class="container mt-5">
     <div class="row">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-content-center">
         <h2><%= @team.name %></h2>
-        <div class="links">
+        <div class="links align-content-center">
           <%= link_to "Edit this team", edit_team_path(@team), class:
-          'btn-dark-purple' %> <%= link_to 'Add member',
+          'btn-dark-purple' %>
+          <%= link_to 'Add member',
           new_team_team_member_path(@team), class: 'btn-dark-purple' %>
         </div>
       </div>
@@ -27,27 +28,36 @@
       </div>
       <% end %>
     </div>
-    <hr />
+
+    <hr>
+
+        <h1>Not Started:</h1>
     <% @team.tasks.each do |task| %>
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-header d-flex justify-content-between">
-          <h2 class="card-title"><%= task.name %></h2>
-          <p class="card-text"><%= (task.deadline - Date.today).to_i %>d</p>
-        </div>
-        <div class="card-body">
-          <p class="card-text"><%= task.description %></p>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-          <p class="card-text">
-            <%= render 'tasks/progress-bar', task: task %>
-          </p>
-          <%= link_to task do %>
-          <i class="fa-solid fa-angles-right"></i>
-          <% end %>
-        </div>
-      </div>
-    </div>
+      <% if task.completed == false && task.started == false %>
+        <%= render 'teams/notstarted', task: task %>
+      <% end %>
     <% end %>
+<hr>
+        <h1>In Progress:</h1>
+     <% @team.tasks.each do |task| %>
+      <% if task.started == true && task.completed == false %>
+
+        <%= render 'teams/inprogress', task: task %>
+      <% end %>
+    <% end %>
+
+<hr>
+        <h1>Completed:</h1>
+    <% @team.tasks.each do |task| %>
+
+      <% if task.started == true && task.completed == true %>
+
+        <%= render 'teams/completed', task: task %>
+      <% end %>
+       <% end %>
+
+
+
+
   </div>
 </div>
