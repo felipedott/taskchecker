@@ -6,7 +6,9 @@
     <div class="row">
       <div class="d-flex justify-content-between align-items-center">
         <h2>My Teams</h2>
-        <%= link_to 'New Team', new_team_path, class: 'btn btn-primary' %>
+        <%= link_to new_team_path, class: 'align-link-bottom' do %>
+          <i class="fa-solid fa-plus"></i> New Team
+        <% end %>
       </div>
       <hr />
     </div>

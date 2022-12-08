@@ -2,19 +2,34 @@
 <%= render 'shared/sidebar' %>
 <div class="main">
   <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div class="row">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2><%= @task.name %></h2>
+          <p class="align-link-bottom"><%= @task.deadline.strftime("%B %d, %Y") %></p>
+      </div>
+      <hr/>
+      <p>Assigned to: <%= @task.member.first_name.capitalize %></p>
+    </div>
 
-      <div class="col-12 col-md-8 col-sm-6 ">
-
-         <p>Name: <%= @task.name %></p>
-         <p>Description: <%= @task.description %></p>
-         <p>Deadline: <%= @task.deadline %></p>
-         <p>Manager: <%= @task.manager.first_name %></p>
-         <p>Responsavel: <%= @task.member.first_name %></p>
-
-         <%= link_to "Edit this task", edit_task_path(@task), class: 'btn-dark-purple' %>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Description:</h5>
+            <p class="card-text"><%= @task.description %></p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <small>Manager: <%= @task.manager.first_name.capitalize %></small>
+            <small>
+              <%= link_to edit_task_path(@task), class: 'align-link-bottom' do %>
+                <i class="fa-solid fa-gear"></i> Edit this task
+              <% end %>
+            </small>
+          </div>
       </div>
 
+
     </div>
+
   </div>
 </div>

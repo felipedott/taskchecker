@@ -1,11 +1,12 @@
-<div class="col">
-  <div class="card h-100">
-
       <% tasks.each do |task| %>
         <% if (task.member_id == current_user.id || task.manager_id == current_user.id) && task.completed == false %>
+        <div class="col">
+          <div class="card h-100">
+
 
           <div class="card-header d-flex justify-content-between">
-            <h2 class="card-title"><%= task.name %></h2>
+
+            <h3 class="card-title"><%= task.name %></h3>
             <p class="card-text"><%= (task.deadline - Date.today).to_i %>d</p>
           </div>
 
@@ -13,16 +14,16 @@
             <p class="card-text"><%= task.description %></p>
           </div>
 
-          <div class="card-footer justify-content-between">
+          <div class="card-footer">
             <p class="card-text"><%= render 'tasks/progress-bar', task: task %></p>
-          <%= link_to task do %>
-            <i class="fa-solid fa-angles-right"></i>
-          <% end %>
+            <div class="d-flex justify-content-center">
+              <%= link_to task do %>
+                <i class="fa-solid fa-caret-down"></i>
+              <% end %>
+            </div>
           </div>
 
+          </div>
+        </div>
         <% end %>
       <% end %>
-
-
-  </div>
-</div>

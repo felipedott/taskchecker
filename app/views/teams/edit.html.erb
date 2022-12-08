@@ -12,7 +12,9 @@
             <%= f.button :submit, class: 'btn btn-outline-secondary' %>
           <% end %>
           <hr>
-          <%= button_to "Add a member to team", @team, class: 'btn-dark-purple' %>
+
+          <%= link_to 'Add member',
+          new_team_team_member_path(@team), class: 'btn-dark-purple' %>
 
           <hr>
 

@@ -6,12 +6,11 @@
     <div class="row">
       <div class="d-flex justify-content-between align-content-center">
         <h2><%= @team.name %></h2>
-        <div class="links align-content-center">
-          <%= link_to "Edit this team", edit_team_path(@team), class:
-          'btn-dark-purple' %>
-          <%= link_to 'Add member',
-          new_team_team_member_path(@team), class: 'btn-dark-purple' %>
-        </div>
+
+          <%= link_to edit_team_path(@team), class: 'align-link-bottom' do %>
+            <i class="fa-solid fa-gear"></i> Edit my team
+          <% end %>
+
       </div>
       <hr />
     </div>
@@ -33,7 +32,7 @@
 
     <div class='grid-tasks'>
       <div>
-        <h1>Not Started:</h1>
+        <h3>Not Started:</h3>
         <% @team.tasks.each do |task| %>
           <% if task.completed == false && task.started == false %>
             <%= render 'teams/notstarted', task: task %>
@@ -42,7 +41,7 @@
       </div>
 
       <div>
-        <h1>In Progress:</h1>
+        <h3>In Progress:</h3>
         <% @team.tasks.each do |task| %>
           <% if task.started == true && task.completed == false %>
             <%= render 'teams/inprogress', task: task %>
@@ -51,7 +50,7 @@
       </div>
 
       <div>
-        <h1>Completed:</h1>
+        <h3>Completed:</h3>
         <% @team.tasks.each do |task| %>
           <% if task.started == true && task.completed == true %>
             <%= render 'teams/completed', task: task %>
