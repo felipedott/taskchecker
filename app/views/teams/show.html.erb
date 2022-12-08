@@ -7,6 +7,9 @@
       <div class="d-flex justify-content-between align-content-center">
         <h2><%= @team.name %></h2>
 
+          <%= link_to new_team_task_path(@team), class: 'align-link-bottom' do %>
+            <i class="fa-solid fa-plus"></i> New Task <% end %>
+
           <%= link_to edit_team_path(@team), class: 'align-link-bottom' do %>
             <i class="fa-solid fa-gear"></i> Edit my team
           <% end %>
@@ -19,10 +22,7 @@
       <div class="col">
         <div class="card h-100">
           <%= render 'teams/card', member: member %>
-          <div class="card-footer d-flex justify-content-center">
-            <%= link_to new_team_task_path(@team) do %>
-            <i class="fa-solid fa-plus"></i> New Task <% end %>
-          </div>
+
         </div>
       </div>
       <% end %>
