@@ -8,28 +8,7 @@
       <hr>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-
-    <% @tasks.each do |task| %>
-      <% if (task.member_id == current_user.id || task.manager_id == current_user.id) && task.completed == false %>
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-header d-flex justify-content-between">
-              <h2 class="card-title"><%= task.name %></h2>
-              <p class="card-text"><%= (task.deadline - Date.today).to_i %>d</p>
-            </div>
-            <div class="card-body">
-              <p class="card-text"><%= task.description %></p>
-            </div>
-            <div class="card-footer d-flex justify-content-between">
-              <p class="card-text"><%= task.completed %> (status) </p>
-            <%= link_to task do %>
-              <i class="fa-solid fa-angles-right"></i>
-            <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+      <%= render 'tasks/tasks', tasks: @tasks %>
     </div>
   </div>
 
@@ -39,18 +18,8 @@
       <hr>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100 rounded-5">
-
-          <div class="card-body">
-            <h5 class="card-title">Team Name</h5>
-            <p class="card-text">Hour  |  Date</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Progress Bar</small>
-          </div>
-        </div>
-      </div>
+     <%= render 'events/events', events: @events %>
     </div>
+
   </div>
 </div>

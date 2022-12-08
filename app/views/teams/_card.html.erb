@@ -1,0 +1,36 @@
+<div class="card-header d-flex justify-content-center">
+  <% if member.avatar.key == nil %>
+    <img
+      class="avatar tile"
+      alt="avatar"
+      src="/app/assets/images/default_avatar.jpg "
+    />
+  <% else %>
+    <img
+      class="avatar tile"
+      alt="avatar"
+      src="<%= cl_image_path member.avatar.key%>"
+    />
+  <% end %>
+</div>
+
+<div class="card-body">
+  <div class="d-flex justify-content-between">
+    <p class="card-text">Name:</p>
+    <p class="card-text">
+      <%= "#{member.first_name.capitalize} #{member.last_name.capitalize}" %>
+    </p>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <p class="card-text">E-mail:</p>
+    <p class="card-text"><%= member.email %></p>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <p class="card-text">Tasks:</p>
+    <p class="card-text">
+      <%= member.tasks_as_member.empty? ? "0" : member.tasks_as_member.count %>
+    </p>
+  </div>
+</div>
