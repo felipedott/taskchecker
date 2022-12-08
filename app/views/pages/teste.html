@@ -1,0 +1,17 @@
+<div class="col">
+  <div class="card h-100">
+    <div class="card-header d-flex justify-content-between">
+      <h2 class="card-title"><%= task.name %></h2>
+      <p class="card-text"><%= (task.deadline - Date.today).to_i %>d</p>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= task.description %></p>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <p class="card-text"><%= task.completed %> (status) </p>
+    <%= link_to task do %>
+      <i class="fa-solid fa-angles-right"></i>
+    <% end %>
+    </div>
+  </div>
+</div>

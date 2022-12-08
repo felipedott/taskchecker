@@ -1,21 +1,13 @@
+<div class="col">
+  <div class="card h-100 rounded-5">
     <% @events.each do |event| %>
-      <div class="card-tasks">
-        <div class="card-tasks-info p-1">
-          <h2>
-            <%= event.title %>
-          </h2>
-          <hr>
-          <p>From:
-             <%= event.start_date.localtime.strftime("%m/%d/%Y at %I:%M%p") %>
-             to
-             <%= event.end_date.localtime.strftime("%m/%d/%Y at %I:%M%p") %>
-          </p>
-          <hr>
-          <p>
-            <strong>Description:</strong>
-            <%= event.description %>
-          </p>
-
-        </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= event.title %></h5>
+        <p class="card-text"><%= event.description %></p>
       </div>
-      <% end %>
+      <div class="card-footer">
+        <small class="text-muted"><%= event.start_date.localtime.strftime("%m/%d/%Y") %>  |  <%= event.start_date.localtime.strftime("%I:%M%p") %> - <%= event.end_date.localtime.strftime("%m/%d/%Y") %>  |  <%= event.end_date.localtime.strftime("%I:%M%p") %></small>
+      </div>
+    <% end %>
+  </div>
+</div>
