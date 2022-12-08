@@ -15,7 +15,6 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.float :longitude
       t.string :guest_list
 
-
       t.timestamps
     end
   end

@@ -14,12 +14,4 @@ class PagesController < ApplicationController
     @events = policy_scope(Event)
     # @meetings = Meeting.all(scope->id)
   end
-
-  # private
-
-  # def a_definir
-  # end
-
-  # esse metodo seta a instancia de usuario (find -> id = current_user )
-
 end

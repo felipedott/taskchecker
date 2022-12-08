@@ -9,5 +9,4 @@ class Team < ApplicationRecord
   def create_team_chat
     Chatroom.create(name: self.name, team: self)
   end
-
 end

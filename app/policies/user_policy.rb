@@ -17,5 +17,4 @@ class UserPolicy < ApplicationPolicy
   def calendar?
     true
   end
-
 end
