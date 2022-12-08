@@ -13,5 +13,4 @@ class ChatroomPolicy < ApplicationPolicy
   def create?
     true
   end
-
 end

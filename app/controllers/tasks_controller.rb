@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_team, only: [:new, :create]
-  before_action :set_task, only: [:edit, :update]
-
+  before_action :set_team, only: %i[new create]
+  before_action :set_task, only: %i[edit update]
   def index
     @tasks = policy_scope(Task)
     authorize @tasks

@@ -1,5 +1,5 @@
 class TeamMembersController < ApplicationController
-  before_action :set_team, only: [:new, :create]
+  before_action :set_team, only: %i[new create]
 
   def new
     @users = User.all

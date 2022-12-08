@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :sync_event_with_google]
+  before_action :set_event, only: %i[show edit update destroy sync_event_with_google]
   before_action :authenticate_user!
   after_action :verify_authorized, except: :event_calendar
 
@@ -35,8 +35,8 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
-  rescue Google::Apis::ClientError => error
-    redirect_to events_path, notice: error.message
+  rescue Google::Apis::ClientError => e
+    redirect_to events_path, notice: e.message
   end
 
   def update
@@ -58,10 +58,6 @@ class EventsController < ApplicationController
     authorize @event
     @event.destroy
     redirect_to events_path, status: :see_other
-    # respond_to do |format|
-    #   format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
   end
 
   def event_calendar; end
@@ -93,7 +89,7 @@ class EventsController < ApplicationController
   def sync_event_with_google
     authorize @event
     ge = @event.get_google_event(@event.google_event_id, @event.user)
-    guests = ge.attendees.map {|at| at.email}.join(", ")
+    guests = ge.attendees.map(&:email).join(", ")
     @event.update(guest_list: guests)
     redirect_to event_path(@event), notice: "Event has been synced with google successfully."
   end
@@ -103,7 +99,7 @@ class EventsController < ApplicationController
     authorize @events
     @events.each do |event|
       ge = event.get_google_event(@event.google_event_id, @event.user)
-      guests = ge.attendees.map {|at| at.email}.join(", ")
+      guests = ge.attendees.map(&:email).join(", ")
       event.update(guest_list: guests)
     end
     redirect_to events_path, notice: "All events has been synced with google successfully."

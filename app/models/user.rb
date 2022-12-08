@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  after_commit :add_default_avatar, on: [:create, :update]
+  after_commit :add_default_avatar, on: %i[create update]
 
   def self.from_omniauth(auth)
 
