@@ -35,7 +35,8 @@
                   <% end %>
                 <% end %>
               </div>
-              <div class="card-footer d-flex justify-content-end">
+              <div class="card-footer d-flex justify-content-between">
+                <%= link_to 'Team Chat', chatroom_path(team)%>
                 <%= link_to team , class: 'hover' do %>
                 <i class="fa-solid fa-angles-right"></i>
                 <% end %>
