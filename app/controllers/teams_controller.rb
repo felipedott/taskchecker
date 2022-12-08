@@ -16,21 +16,13 @@ class TeamsController < ApplicationController
       @team_member.save
 
       redirect_to team_path(@team), notice: "New team created!"
-      @chatroom = Chatroom.new
-      @chatroom.name = "#{@team.name}"
-      @chatroom.team_id = @team.id
-      @chatroom.save
-      # CRIO UM CHATROOM AQUI - > pego o id do team e ai salvo o nome = team.name
+      # CHAT EH CRIADO NO MODELO
     else
       render :new, status: :unprocessable_entity
     end
 
   end
 
-  # def show
-  #   @tasks = policy_scope(Task)
-  #   authorize @tasks
-  # end
 
   def index
     @user = current_user
