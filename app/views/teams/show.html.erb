@@ -31,33 +31,34 @@
 
     <hr>
 
+    <div class='grid-tasks'>
+      <div>
         <h1>Not Started:</h1>
-    <% @team.tasks.each do |task| %>
-      <% if task.completed == false && task.started == false %>
-        <%= render 'teams/notstarted', task: task %>
-      <% end %>
-    <% end %>
-<hr>
+        <% @team.tasks.each do |task| %>
+          <% if task.completed == false && task.started == false %>
+            <%= render 'teams/notstarted', task: task %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div>
         <h1>In Progress:</h1>
-     <% @team.tasks.each do |task| %>
-      <% if task.started == true && task.completed == false %>
+        <% @team.tasks.each do |task| %>
+          <% if task.started == true && task.completed == false %>
+            <%= render 'teams/inprogress', task: task %>
+          <% end %>
+        <% end %>
+      </div>
 
-        <%= render 'teams/inprogress', task: task %>
-      <% end %>
-    <% end %>
-
-<hr>
+      <div>
         <h1>Completed:</h1>
-    <% @team.tasks.each do |task| %>
-
-      <% if task.started == true && task.completed == true %>
-
-        <%= render 'teams/completed', task: task %>
-      <% end %>
-       <% end %>
-
-
-
+        <% @team.tasks.each do |task| %>
+          <% if task.started == true && task.completed == true %>
+            <%= render 'teams/completed', task: task %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
   </div>
 </div>
