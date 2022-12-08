@@ -31,33 +31,32 @@
 
     <hr>
 
-        <h1>Not Started:</h1>
-    <% @team.tasks.each do |task| %>
-      <% if task.completed == false && task.started == false %>
-        <%= render 'teams/notstarted', task: task %>
+  <div>
+    <h1>Not Started:</h1>
+      <% @team.tasks.each do |task| %>
+        <% if task.completed == false && task.started == false %>
+          <%= render 'teams/notstarted', task: task %>
+        <% end %>
       <% end %>
-    <% end %>
-<hr>
-        <h1>In Progress:</h1>
-     <% @team.tasks.each do |task| %>
-      <% if task.started == true && task.completed == false %>
 
-        <%= render 'teams/inprogress', task: task %>
+    <hr>
+
+    <h1>In Progress:</h1>
+      <% @team.tasks.each do |task| %>
+        <% if task.started == true && task.completed == false %>
+          <%= render 'teams/inprogress', task: task %>
+        <% end %>
       <% end %>
-    <% end %>
 
-<hr>
-        <h1>Completed:</h1>
-    <% @team.tasks.each do |task| %>
+    <hr>
 
-      <% if task.started == true && task.completed == true %>
-
-        <%= render 'teams/completed', task: task %>
+    <h1>Completed:</h1>
+      <% @team.tasks.each do |task| %>
+        <% if task.started == true && task.completed == true %>
+          <%= render 'teams/completed', task: task %>
+        <% end %>
       <% end %>
-       <% end %>
-
-
-
+  </div>
 
   </div>
 </div>
