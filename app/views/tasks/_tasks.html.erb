@@ -6,12 +6,14 @@
 
           <div class="card-header d-flex justify-content-between">
 
-            <h3 class="card-title"><%= task.name %></h3>
+            <h3 class="card-title"><%= task.team.name %></h3>
             <p class="card-text"><%= (task.deadline - Date.today).to_i %>d</p>
           </div>
 
           <div class="card-body">
-            <p class="card-text"><%= task.description %></p>
+            <p class="card-text">
+            <strong><%= task.name %> : </strong>
+            <%= task.description %></p>
           </div>
 
           <div class="card-footer">
