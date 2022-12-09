@@ -1,6 +1,8 @@
 <div class="col">
   <div class="card h-100 rounded-5">
+
     <% @events.each do |event| %>
+    <% if (event.user_id == current_user.id) %>
       <div class="card-body">
         <h5 class="card-title"><%= event.title %></h5>
         <p class="card-text"><%= event.description %></p>
@@ -8,6 +10,7 @@
       <div class="card-footer">
         <small class="text-muted"><%= event.start_date.localtime.strftime("%m/%d/%Y") %>  |  <%= event.start_date.localtime.strftime("%I:%M%p") %> - <%= event.end_date.localtime.strftime("%m/%d/%Y") %>  |  <%= event.end_date.localtime.strftime("%I:%M%p") %></small>
       </div>
+      <% end %>
     <% end %>
   </div>
 </div>
