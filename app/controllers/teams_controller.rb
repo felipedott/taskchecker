@@ -14,9 +14,7 @@ class TeamsController < ApplicationController
       @team_member = TeamMember.new(user: current_user, team: @team)
       @team_member.admin = true
       @team_member.save
-
       redirect_to team_path(@team), notice: "New team created!"
-      # CHAT EH CRIADO NO MODELO
     else
       render :new, status: :unprocessable_entity
     end

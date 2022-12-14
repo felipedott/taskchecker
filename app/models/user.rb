@@ -24,7 +24,7 @@ class User < ApplicationRecord
   after_commit :add_default_avatar, on: %i[create update]
 
   def self.from_omniauth(auth)
-
+    # LOGIN INFORMATION CAN BE RE-USED FOR DIFFERENT PROVIDERS (google, facebook, etc)
     user = User.where(provider: auth.try(:provider) || auth["provider"], uid: auth.try(:uid) || auth["uid"]).first
     if user
       return user
@@ -51,8 +51,7 @@ class User < ApplicationRecord
     end
   end
 
-  # CHECK IF USER TOKEN IS EXPIRED
-
+  # CHECK IF USER TOKEN FOR GOOGLE CALENDAR IS EXPIRED
   def expired?
     expires_at < Time.current.to_i
   end
@@ -63,6 +62,7 @@ class User < ApplicationRecord
 
   private
 
+  # ADDS A DEFAULT PROFILE PICTURE ON USER CREATION
   def add_default_avatar
     unless avatar.attached?
       avatar.attach(

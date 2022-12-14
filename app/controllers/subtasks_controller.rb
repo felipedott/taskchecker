@@ -1,6 +1,8 @@
+# SUBTASK MODEL ON HOLD FOR NOW
+
 class SubtasksController < ApplicationController
-  before_action :set_task, only: [:new, :create]
-  before_action :set_subtask, only: [:show, :edit, :update]
+  before_action :set_task, only: %i[new create]
+  before_action :set_subtask, only: %i[show edit update]
 
   def index
     @subtasks = policy_scope(Subtask)
@@ -15,7 +17,6 @@ class SubtasksController < ApplicationController
   def create
     @subtask = Subtask.new(subtask_params)
     @subtask.task_id = @task.id
-
     authorize @subtask
     if @subtask.save
       redirect_to task_path(@task)

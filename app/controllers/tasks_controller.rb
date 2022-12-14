@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_team, only: %i[new create]
   before_action :set_task, only: %i[edit update]
+
   def index
     @tasks = policy_scope(Task)
     authorize @tasks
@@ -9,6 +10,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @team_members = TeamMember.where(team_id: @team.id, admin: false)
+    # CANNOT CREATE A TASK FOR AN ADMIN BECAUSE REASONS
     authorize @task
   end
 
