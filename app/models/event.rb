@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   after_update :update_event_on_gcal
   before_destroy :remove_event_from_gcal
 
+  # FIXES THE TIMEZONE TO BE LOCAL TO ALL USERS
   def set_in_timezone(time)
     Time.use_zone(Time.now.zone) { time.to_datetime.change(offset: Time.zone.now.strftime("%z")) }
   end

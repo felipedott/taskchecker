@@ -1,17 +1,15 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home]
-  # setar before action pra user information EM DASHBOARD
 
   def home
   end
 
   def dashboard
-    # definir as instancias por base no current_user p/ puxar so o necessario
+    # DASHBOARD TEM ACESSO A TUDO (ainda que nao seja utilizado no momento)
     @user = current_user
     @tasks = policy_scope(Task)
     @team_members = policy_scope(TeamMember)
     @teams = policy_scope(Team)
     @events = policy_scope(Event)
-    # @meetings = Meeting.all(scope->id)
   end
 end
